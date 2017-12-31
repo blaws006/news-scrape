@@ -1,0 +1,27 @@
+{
+  "name": "news-scrape",
+  "version": "1.0.0",
+  "description": "With this app, we'll be scraping articles off of a website. Then give them options to save and delete articles, and write and delete comments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blaws006/news-scrape.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blaws006/news-scrape/issues"
+  },
+  "homepage": "https://github.com/blaws006/news-scrape#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.2",
+    "handlebars": "^4.0.11",
+    "mongoose": "^5.0.0-rc0",
+    "request": "^2.83.0"
+  }
+}
