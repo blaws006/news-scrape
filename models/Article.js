@@ -4,15 +4,24 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 //Actual schema
 var ArticleSchema = new Schema({
-    name: {
+    title: {
         type: String,
-        unique: true
+        unique: true,
+        required: false
+    },
+    link: {
+        type: String,
+        unique: true, 
+    },
+    summary: {
+        type: String,
+        unique: true,
     },
     saved: {
         type: Boolean,
         default: false
     },
-    notes: [{
+    note: [{
        type: Schema.Types.ObjectId,
        ref: "Note" 
     }]
