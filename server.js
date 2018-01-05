@@ -3,7 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var logger = require("morgan");
-var request = require("request")
+var request = require("request");
 var cheerio = require("cheerio");
 
 
@@ -31,28 +31,43 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 
 mongoose.connect(MONGODB_URI);
 
-app.get("/scrape", function (req, res) {
-	request("https://kotaku.com/", function (error, response, html) {
 
-		var $ = cheerio.load(html);
-		
-		var result = {};
-		$("article").each(function (i, element) {
-			
+//Route that pulls all articles from the database
 
-			result.title = $(element).children().find("h1").text();
-			result.link = $(element).children().find("a").attr("href");
-			result.summary = $(element).children().find("p").text();
+app.get("/articles", function(req, res){
+	db.Article.find({}).then(function(dbArticle){
+		//If able to find the articles
+		res.json(dbArticle);
+	})
+	.catch(function(err) {
+		res.json(err);
+	});
+});
 
-			//Create a new Article using the "result" object built from scraping
-			db.Article.findOneAndUpdate(result, {upsert: true}).then(function (dbArticle) {
-				//If successful send a success message to the client
-				console.log("Scrape Complete");
-			}).catch(function (err) {
-				console.log(err)
-			});
-		});
-		console.log(result);
+//Route to find one particular article and populate notes
+app.get("/articles/:id", function(req, res){
+	db.Article.findOne({"_id": req.params.id})
+	.populate("note")
+	.then(function(dbArticle){
+		res.json(dbArticle)
+		})
+		.catch(function(err){
+			res.json(err)
+	});
+});
+
+//Route for saving and updating an Article's assoctiated Note
+app.post("/articles/:id", function(req, res){
+
+	db.Note.create(req.body)
+	.then(function(dbNote) {
+		return db.Article.findOneAndUpdate({"_id": req.params.id}, {"note": dbNote.id}, {"new": true})
+	})
+	.then(function(dbArticle){
+		res.json(dbArticle);
+	})
+	.catch(function(err) {
+		res.json(err);
 	});
 });
 
