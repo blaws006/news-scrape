@@ -3,7 +3,7 @@ var request = require("request");
 
 
 var scrape = function () {
-  request("https://kotaku.com/", function (error, response, html) {
+  return request("https://kotaku.com/", function (error, response, html) {
 
     var $ = cheerio.load(html);
 
@@ -22,13 +22,7 @@ var scrape = function () {
       };
 
       result.push(addedData)
-      //Create a new Article using the "result" object built from scraping
-      // db.Article.findOneAndUpdate(result, { upsert: true }).then(function (dbArticle) {
-      //If successful send a success message to the client
-      //     console.log("Scrape Complete");
-      // }).catch(function (err) {
-      //     console.log(err)
-      // });
+    
     });
     return result;
     console.log(result);

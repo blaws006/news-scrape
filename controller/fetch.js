@@ -4,8 +4,10 @@ var scrape = require("../scripts/scrape");
 module.exports = {
 	articleScrape: function (req, res) {
 		return scrape()
-			.then(function (articles) {
-				db.Article.create(articles);
+		.then(function (articles) {
+			console.log(articles)
+			return db.Article.create(articles);
+			
 			})
 			.then(function (dbArticle) {
 				if (dbArticle.length === 0) {
