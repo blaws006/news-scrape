@@ -23,7 +23,7 @@ var ArticleSchema = new Schema({
 	},
 	date: {
 		type: Date,
-		default: Date.now
+		default: Date.now()
 	},
 	note: [{
 		type: Schema.Types.ObjectId,

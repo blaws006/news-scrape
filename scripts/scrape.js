@@ -1,28 +1,30 @@
 var cheerio = require("cheerio");
 var request = require("request");
-
+var axios = require("axios");
 
 var scrape = function () {
-  return request("https://kotaku.com/", function (error, response, html) {
+   return axios.get("https://kotaku.com/").then(function (res) {
 
-    var $ = cheerio.load(html);
+    var $ = cheerio.load(res.data);
 
     var result = [];
+
     $("article").each(function (i, element) {
 
       var title = $(element).children().find("h1").text();
       var link = $(element).children().find("a").attr("href");
       var summary = $(element).children().find("p").text();
 
-      var addedData = {
 
-        title: title,
-        link: link,
-        summary: summary
-      };
+      if (title && summary && link) {
+        var addedData = {
+          title: title,
+          link: link,
+          summary: summary
+        };
 
-      result.push(addedData)
-    
+        result.push(addedData)
+      }
     });
     return result;
     console.log(result);

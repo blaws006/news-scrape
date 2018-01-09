@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = {
     //Find all articles and sort them by date
     findAll: function(req, res) {
-        db.Article.find({})
+        db.Article.find(req.query)
         .sort({date: -1})
         .then(function(dbArticle){
             res.json(dbArticle);
