@@ -3,7 +3,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var logger = require("morgan");
-
 var PORT = process.env.PORT || 3000;
 
 //require all of the models
@@ -13,7 +12,7 @@ var db = require("./models");
 
 var app = express();
 
-var routes = require("./routes");
+var routes = require("./controller");
 
 //Middleware initialization
 // Use morgan logger for logging requests
@@ -37,11 +36,11 @@ app.engine("handlebars", exphbs({
 
 app.set("view engine", "handlebars");
 
-// Use express.static to serve the public folder as a static directory
+// // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
 //Have request go through routes files
-app.use(routes)
+app.use("/", routes)
 
 //Creates local and deployed paths for the MongoDB database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";

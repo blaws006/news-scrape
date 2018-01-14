@@ -1,13 +1,15 @@
-var db = require("../models");
-var scrape = require("../scripts/scrape");
 
-module.exports = {
-	articleScrape: function (req, res) {
+var db = require("../../models");
+var scrape = require("../../scripts/scrape");
+var router = require("express").Router();
+
+ router.get("/api/article", function (req, res) {
 		// scrape Kotaku
 		return scrape()
 			.then(function (articles) {
 				// then insert articles into the db
 				return db.Article.create(articles);
+				res.json(articles)
 			})
 			.then(function (dbArticle) {
 				if (dbArticle.length === 0) {
@@ -26,6 +28,8 @@ module.exports = {
 				res.json({
 					message: "Scrape complete!!"
 				});
-			});
-	}
-};
+			})
+			
+	});
+
+	module.exports = router;
