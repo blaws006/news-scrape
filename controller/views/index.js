@@ -1,7 +1,18 @@
 var app = require("express").Router();
-var articleAPI = require("../api/article")
+var db = require("../../models");
 app.get("/", function(req, res){
-   res.render("index")
+    db.Article.find(req.query)
+        .sort({ date: -1 })
+        .then(function (dbArticle) {
+            var allObject = {
+                Article: dbArticle
+            };
+            console.log(allObject);
+            res.render("index", allObject)
+        })
+        .catch(function (err) {
+            res.send(err);
+        });
 });
 
 app.get("/saved", function(req, res){

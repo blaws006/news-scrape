@@ -2,20 +2,20 @@ $(document).ready(function () {
 
     $(".scrape").on("click", handleArticleScrape)
    
-    initPage();
+    // initPage();
 
-    function initPage () {
-        $.ajax("/api/article", {
-        type: "GET"
-    }
-    ).then(function (data) {
-            console.log(data)
-            if (data && data.length) {
+    // function initPage () {
+    //     $.ajax("/api/article", {
+    //     type: "GET"
+    // }
+    // ).then(function (data) {
+    //         console.log(data)
+    //         if (data && data.length) {
                 
-                $(".article-container").append(data)
-            }
-        });
-    };
+    //             $(".article-container").append(data)
+    //         }
+    //     });
+    // };
 
     function renderArticles(articles) {
         var articlePanels = [];

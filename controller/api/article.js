@@ -2,18 +2,18 @@ var db = require("../../models");
 var router = require("express").Router();
     //Find all articles and sort them by date
     router.get("/", function(req, res) {
-        db.Article.find(req.query)
-        .sort({date: -1})
-        .then(function(dbArticle){
-            var allObject = {
-                Article: dbArticle
-            };
-            console.log(allObject);
-           res.render("index", allObject)    
-        })
-        .catch(function(err){
-            res.send(err);
-        });
+        // db.Article.find(req.query)
+        // .sort({date: -1})
+        // .then(function(dbArticle){
+        //     var allObject = {
+        //         Article: dbArticle
+        //     };
+        //     console.log(allObject);
+        //    res.render("index", allObject)    
+        // })
+        // .catch(function(err){
+        //     res.send(err);
+        // });
     })
     // Delete all articles
     router.delete("api/article/:id", function(req, res) {
