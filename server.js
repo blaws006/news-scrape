@@ -12,7 +12,7 @@ var db = require("./models");
 
 var app = express();
 
-var routes = require("./controller");
+var routes = require("./routes");
 
 //Middleware initialization
 // Use morgan logger for logging requests

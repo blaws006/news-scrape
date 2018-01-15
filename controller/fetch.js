@@ -1,11 +1,11 @@
 
-var db = require("../../models");
-var scrape = require("../../scripts/scrape");
-var router = require("express").Router();
+var db = require("../models");
+var scrape = require("../scripts/scrape");
 
- router.get("/api/article", function (req, res) {
+ module.exports = {
 		// scrape Kotaku
-		return scrape()
+ scrapeArticles: function(req, res) {
+ return scrape()
 			.then(function (articles) {
 				// then insert articles into the db
 				return db.Article.create(articles);
@@ -30,6 +30,5 @@ var router = require("express").Router();
 				});
 			})
 			
-	});
-
-	module.exports = router;
+	}
+ };	
