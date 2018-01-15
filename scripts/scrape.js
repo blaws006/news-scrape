@@ -3,7 +3,7 @@ var request = require("request");
 var axios = require("axios");
 
 var scrape = function () {
-   return axios.get("https://kotaku.com/").then(function (res) {
+  return axios.get("https://kotaku.com/").then(function (res) {
 
     var $ = cheerio.load(res.data);
 
@@ -26,8 +26,9 @@ var scrape = function () {
         result.push(addedData)
       }
     });
-    return result;
     console.log(result);
+    return result;
+
   });
 }
 

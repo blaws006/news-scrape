@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
+  $(".background").append("<img src='./assets/images/electrical-network-tech-blue-background-header.jpg' />");
+ var articleContainer = $(".article-container");
 
-  var articleContainer = $(".article-container");
-
-  $(".scrape").on("click", handleArticleScrape)
-
+  $(document).on("click", ".scrape", handleArticleScrape)
+  $(document).on("click", ".save", articleSave);
   initPage();
 
   function initPage() {
@@ -15,7 +15,7 @@ $(document).ready(function () {
         console.log(data);
         renderArticles(data);
       } else {
-        renderEmpty();
+        renderEmpty();   
       }
     });
   }
@@ -43,11 +43,17 @@ $(document).ready(function () {
         "</p>",
         "</div>",
         "<div class='card-action'>",
-       "<a href='" + article.link + "'>",
+        "<i class='material-icons'>",
+        "open_in_browser",
+        "</i>",
+       "<a target='_blank' href='" + article.link + "'>",
        "Visit Page",
        "</a>",
        "</div>",
       "<div class='card-action'>",
+        "<i class='material-icons'>",
+        "add_circle_outline",
+        "</i>",
         "<a class='save'>",
         "Save Article",
         "</a>",
@@ -61,31 +67,47 @@ $(document).ready(function () {
 
 
   function renderEmpty() {
-    $('.modal').modal();
+    $('.modal').modal({
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      opacity: .5, // Opacity of modal background
+      inDuration: 300, // Transition in duration
+      outDuration: 200, // Transition out duration
+      startingTop: '4%', // Starting top style attribute
+      endingTop: '10%', // Ending top style attribute
+      ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+        alert("Ready");
+        console.log(modal, trigger);
+      },
+      complete: function () { alert('Closed'); } // Callback for Modal close
+    }
+    );
   };
 
   function articleSave() {
 
-    var articleToSave = $(this).parents(".cards").data();
+    var articleToSave = $(this).parents(".card").data();
 
     articleToSave.saved = true;
 
     $.ajax({
       method: "PUT",
-      url : "api/article" + articleToSave._id,
+      url : "api/article/" + articleToSave._id,
       data: articleToSave
     }).then(function(data){
       if (data.saved) {
         initPage();
       }
     })
-  }
+  };
 
   function handleArticleScrape() {
     // This function handles the user clicking any "scrape new article" buttons
     $.get("/api/fetch").then(function (data) {
-      initPage();
-      alert(data.message);
+      {
+        console.log(data.message)
+        initPage();
+        
+      }
     });
   }
 });

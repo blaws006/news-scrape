@@ -1,7 +1,6 @@
 var db = require("../models");
-var router = require("express").Router();
-// Find all articles and sort them by date
 
+// Find all articles and sort them by date
 module.exports = {
     findAll: function (req, res) {
         db.Article.find(req.query)
@@ -12,7 +11,7 @@ module.exports = {
                 res.json(dbArticle)
             })
             .catch(function (err) {
-                res.send(err);
+                res.json(err);
             });
     },
     // Delete all articles

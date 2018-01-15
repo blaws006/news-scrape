@@ -1,0 +1,64 @@
+<nav>
+    <div class="nav-wrapper blue lighten-2">
+        <a href="/" class="brand-logo">B-Law's News</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>
+                <a data-target="modal1" class="scrape modal-trigger" href="#modal1">Scrape More Articles</a>
+            </li>
+            <li>
+                <a href="/saved">Saved Articles</a>
+            </li>
+        </ul>
+        <ul id="slide-out" class="side-nav">
+            <li>
+                <a class="scrape">Scrape More Articles</a>
+            </li>
+            <li>
+                <a class="waves-effect" href="/saved">Saved Articles</a>
+            </li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse right">
+            <i class="material-icons">Menu</i>
+        </a>
+    </div>
+</nav>
+<div class="row"></div>
+<div class="row">
+    <div class="background"></div>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col s12 m12 article-container">
+        </div>
+    </div>
+</div>
+<footer class="page-footer blue lighten-2">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">B-Law's News Scraper</h5>
+                <p class="grey-text text-lighten-4">Hope you've enjoyed this app.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Brandon Lawson
+            <a class="grey-text text-lighten-4 right" href="https://github.com/blaws006">More Links</a>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/javascript/saved.js"></script>
+<script src="assets/javascript/nav.js"></script>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+        <p>What Would You Like To Do?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat scrape">Try Scraping New Articles</a>
+        <a href="/saved" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Saved Articles</a>
+    </div>
+</div>

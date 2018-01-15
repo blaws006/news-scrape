@@ -40,7 +40,7 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 //Have request go through routes files
-app.use("/", routes)
+app.use(routes)
 
 //Creates local and deployed paths for the MongoDB database
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";

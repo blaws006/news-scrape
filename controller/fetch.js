@@ -9,7 +9,6 @@ var scrape = require("../scripts/scrape");
 			.then(function (articles) {
 				// then insert articles into the db
 				return db.Article.create(articles);
-				res.json(articles)
 			})
 			.then(function (dbArticle) {
 				if (dbArticle.length === 0) {

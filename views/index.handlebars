@@ -1,9 +1,9 @@
 <nav>
   <div class="nav-wrapper blue lighten-2">
-    <a href="/" class="brand-logo">B-Law's News Scraper</a>
+    <a href="/" class="brand-logo">B-Law's News</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
-        <a class="scrape">Scrape More Articles</a>
+        <a data-target="modal1" class="scrape modal-trigger" href="#modal1">Scrape More Articles</a>
       </li>
       <li>
         <a href="/saved">Saved Articles</a>
@@ -11,33 +11,25 @@
     </ul>
     <ul id="slide-out" class="side-nav">
       <li>
-        <a href="#!">Scrape More Articles</a>
+        <a class="scrape">Scrape More Articles</a>
       </li>
       <li>
-        <a class="waves-effect" href="#!">Saved Articles</a>
+        <a class="waves-effect" href="/saved">Saved Articles</a>
       </li>
     </ul>
     <a href="#" data-activates="slide-out" class="button-collapse right">
       <i class="material-icons">Menu</i>
     </a>
   </div>
-
 </nav>
+<div class="row"></div>
+<div class="row">
+  <div class="background"></div>
+</div>
 <div class="container">
+  
   <div class="row">
     <div class="col s12 m12 article-container">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">{{this.title}}</span>
-          <p>{{this.summary}}</p>
-        </div>
-        <div class="card-action">
-          <a href="{{this.link}}">Visit Page</a>
-        </div>
-        <div class="card-action">
-          <a href="{{this.link}}">Save</a>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -57,13 +49,15 @@
     </div>
   </div>
 </footer>
-<div id="modal1" class="modal">
+<script src="assets/javascript/index.js"></script>
+<script src="assets/javascript/nav.js"></script>
+<div id="modal1" class="modal open">
   <div class="modal-content">
     <h4>Uh Oh. Looks like we don't have any new articles.</h4>
     <p>What Would You Like To Do?</p>
   </div>
   <div class="modal-footer">
-    <a class="modal-action modal-close waves-effect waves-green btn-flat scrape-new">Try Scraping New Articles</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat scrape">Try Scraping New Articles</a>
     <a href="/saved" class="modal-action modal-close waves-effect waves-green btn-flat">Go to Saved Articles</a>
   </div>
 </div>
